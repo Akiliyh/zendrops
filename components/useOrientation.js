@@ -1,10 +1,9 @@
-import {useEffect, useState} from 'react';
-import {Dimensions} from 'react-native';
+import { useEffect, useState } from 'react';
+import { Dimensions } from 'react-native';
 
-export function useOrientation(){
+export function useOrientation() {
   const [orientation, setOrientation] = useState("PORTRAIT");
 
-  // Function to set the initial orientation
   const setInitialOrientation = () => {
     const { width, height } = Dimensions.get('window');
     if (width < height) {
@@ -27,9 +26,8 @@ export function useOrientation(){
       }
     });
 
-    // Clean up event listener on unmount
     return () => {
-      Dimensions.removeEventListener('change', () => {});
+      Dimensions.removeEventListener('change', () => { });
     };
   }, []);
 

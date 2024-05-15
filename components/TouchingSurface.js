@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import { View, StyleSheet} from 'react-native';
+import { View, StyleSheet } from 'react-native';
 import Drop from '../components/Drop';
 import { Audio } from 'expo-av';
 
@@ -30,26 +30,26 @@ export default function TouchingSurface(props) {
   const [touchCount, setTouchCount] = useState(0);
 
   const playDropSound = useCallback(() => {
-  try {
-    const soundObject = new Audio.Sound();
-    soundObject
-      .loadAsync(audioFiles[getRandomInt(0, audioFiles.length - 1)])
-      .then(() => {
-        soundObject.setVolumeAsync(0.1);
-        soundObject.playAsync();
-        soundObject.setOnPlaybackStatusUpdate((status) => {
-          if (status.didJustFinish) {
-            soundObject.unloadAsync();
-          }
+    try {
+      const soundObject = new Audio.Sound();
+      soundObject
+        .loadAsync(audioFiles[getRandomInt(0, audioFiles.length - 1)])
+        .then(() => {
+          soundObject.setVolumeAsync(0.1);
+          soundObject.playAsync();
+          soundObject.setOnPlaybackStatusUpdate((status) => {
+            if (status.didJustFinish) {
+              soundObject.unloadAsync();
+            }
+          });
+        })
+        .catch((error) => {
+          console.error('Error playing sound:', error);
         });
-      })
-      .catch((error) => {
-        console.error('Error playing sound:', error);
-      });
-  } catch (error) {
-    console.error('Error creating sound object:', error);
-  }
-}, []);
+    } catch (error) {
+      console.error('Error creating sound object:', error);
+    }
+  }, []);
 
   useEffect(() => {
     let timeoutIdle;
@@ -59,15 +59,15 @@ export default function TouchingSurface(props) {
       props.onUpdateIdle(false);
       clearTimeout(timeoutIdle);
       return
-    } 
-    
+    }
+
     if (!props.isTitleShown) {
       timeoutIdle = setTimeout(() => {
-          props.onUpdateIdle(true);
+        props.onUpdateIdle(true);
       }, 8000);
     }
-    
-    console.log('Is title shown : ' + props.isTitleShown );
+
+    console.log('Is title shown : ' + props.isTitleShown);
 
     return () => {
       clearTimeout(timeoutIdle);
@@ -79,42 +79,42 @@ export default function TouchingSurface(props) {
     console.log(event.nativeEvent.touches.length);
     console.log(event.nativeEvent.pageY);
     const { pageX, pageY } = event.nativeEvent;
-    if (components.length < 30) { 
-    const newComponent = (
-      <Drop dropShape={props.dropShape} key={Date.now()} top={pageY} left={pageX} />
-    );
-    setComponents((prevComponents) => [...prevComponents, newComponent]);
-    setTimeout(() => {
-      setComponents((prevComponents) =>
-        prevComponents.filter((component) => component.key !== newComponent.key)
+    if (components.length < 30) {
+      const newComponent = (
+        <Drop dropShape={props.dropShape} key={Date.now()} top={pageY} left={pageX} />
       );
-    }, 8000);
-    playDropSound();
-  } else {
-    props.onUpdateRelax(true);
-    console.log('Over 30 drops');
-    console.log(components.length)
-    console.log('COMPONENTS')
-  }
-  }, [props.dropShape, playDropSound, components]); 
-  
+      setComponents((prevComponents) => [...prevComponents, newComponent]);
+      setTimeout(() => {
+        setComponents((prevComponents) =>
+          prevComponents.filter((component) => component.key !== newComponent.key)
+        );
+      }, 8000);
+      playDropSound();
+    } else {
+      props.onUpdateRelax(true);
+      console.log('Over 30 drops');
+      console.log(components.length)
+      console.log('COMPONENTS')
+    }
+  }, [props.dropShape, playDropSound, components]);
+
   const handleTouchEnd = (event) => {
     setTouchCount(event.nativeEvent.touches.length);
   };
-  
+
   return (
     <View style={styles.container}>
-          <View
-      style={styles.container}
-      onTouchStart={handleTouchStart}
-      onTouchEnd={handleTouchEnd}
-    >
-      <View style={styles.touchArea}>
-      {components}
-        {/*<Text style={{color: 'white'}}>Number of touches: {touchCount}</Text>*/}
-      </View>
+      <View
+        style={styles.container}
+        onTouchStart={handleTouchStart}
+        onTouchEnd={handleTouchEnd}
+      >
+        <View style={styles.touchArea}>
+          {components}
+          {/*<Text style={{color: 'white'}}>Number of touches: {touchCount}</Text>*/}
+        </View>
 
-    </View>
+      </View>
     </View>
   );
 };

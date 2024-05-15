@@ -28,7 +28,7 @@ export default function Shapes(props) {
 
   useEffect(() => {
     setUnlockedShape(props.unlockableItems);
-    console.log( 'The current unlocked shapes are');
+    console.log('The current unlocked shapes are');
     console.log(unlockedShape);
   }, [props.unlockableItems]);
 
@@ -44,7 +44,7 @@ export default function Shapes(props) {
     } else {
       return true
     }
-  }; 
+  };
 
   return (
     <View style={styles.backgroundsContainer}>
@@ -56,8 +56,8 @@ export default function Shapes(props) {
       >
         <View style={styles.grid}>
           <View style={styles.row}>
-          <TouchableOpacity onPress={() => handleCirclePress('circle')}>
-          <Circle handleCirclePress={handleCirclePress} isIcon={true} selectedCircle={selectedCircle} validated={validated === 'circle'}></Circle>
+            <TouchableOpacity onPress={() => handleCirclePress('circle')}>
+              <Circle handleCirclePress={handleCirclePress} isIcon={true} selectedCircle={selectedCircle} validated={validated === 'circle'}></Circle>
             </TouchableOpacity>
             <Ring unlockableItems={unlockedShape} handleCirclePress={handleCirclePress} isIcon={true} selectedCircle={selectedCircle} validated={validated === 'ring'} isLocked={isShapeLocked('ring')}></Ring>
             <Square unlockableItems={unlockedShape} handleCirclePress={handleCirclePress} isIcon={true} selectedCircle={selectedCircle} validated={validated === 'square'} isLocked={isShapeLocked('square')}></Square>
@@ -65,7 +65,7 @@ export default function Shapes(props) {
           <View style={styles.row}>
             <Star unlockableItems={unlockedShape} handleCirclePress={handleCirclePress} isIcon={true} selectedCircle={selectedCircle} validated={validated === 'star'} isLocked={isShapeLocked('star')}></Star>
             <Heart unlockableItems={unlockedShape} handleCirclePress={handleCirclePress} isIcon={true} selectedCircle={selectedCircle} validated={validated === 'heart'} isLocked={isShapeLocked('heart')}></Heart>
-            <Triangle unlockableItems={unlockedShape} handleCirclePress={handleCirclePress} isIcon={true} selectedCircle={selectedCircle} validated={validated === 'triangle'} isLocked={isShapeLocked('triangle')}></Triangle>           
+            <Triangle unlockableItems={unlockedShape} handleCirclePress={handleCirclePress} isIcon={true} selectedCircle={selectedCircle} validated={validated === 'triangle'} isLocked={isShapeLocked('triangle')}></Triangle>
           </View>
         </View>
       </LinearGradient>
@@ -74,7 +74,7 @@ export default function Shapes(props) {
 }
 
 const styles = StyleSheet.create({
-  test:{
+  test: {
     borderColor: 'white',
     borderWidth: 5
   },

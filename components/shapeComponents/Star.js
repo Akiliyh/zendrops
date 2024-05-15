@@ -18,10 +18,10 @@ export default function Star(props) {
   const [animation] = useState(new Animated.Value(0));
   const [wasLocked, setWasLocked] = useState(false);
 
-  useEffect(() => { 
+  useEffect(() => {
     if (props.unlockableItems) {
       const item = props.unlockableItems.find(item => item.name === 'star');
-      
+
       if (item && !item.unlocked) {
         setWasLocked(true);
       }
@@ -41,59 +41,62 @@ export default function Star(props) {
 
   return (
     <View>
-    {props.isIcon ? 
+      {props.isIcon ?
         <TouchableOpacity onPress={() => props.handleCirclePress('star')}>
-            <Svg preserveAspectRatio="xMidYMid meet" width="50" height="50" viewBox="0 0 50 50" version="1.1" fillRule="evenodd" clipRule="evenodd" strokeLinejoin="round" strokeMiterlimit="2">
-                <G id="Plan-de-travail1" transform="matrix(0.0728333,0,0,0.111127,-23.2217,-80.9278)">
-                    <Rect x="318.833" y="728.246" width="686.5" height="449.936" fill="none" />
-                    <G transform="matrix(5.67138,0,0,3.71705,305.701,710.501)">
-                        <Path opacity={props.selectedCircle === 'star' ? 1 : 0.7} stroke={props.selectedCircle === 'star' ? 'white' : 'transparent'} fill={props.validated ? '#1AD15F' : '#FF3C62'} strokeWidth="5" d="M62.839,12.663L75.903,52.872L118.181,52.872L83.978,77.722L97.042,117.931L62.839,93.081L28.635,117.931L41.7,77.722L7.496,52.872L49.774,52.872L62.839,12.663Z"/>
-                    </G>
-                </G>
-            </Svg>
-            {props.isLocked ? (<IconFA style={[styles.lock]} name="lock" color="white" size={20}></IconFA>)
-             : wasLocked && (
-            <Animated.View style={[styles.lock, {opacity: animation.interpolate({inputRange: [0, 0, 1], outputRange: [0, 1, 0],}),
-                  transform: [{translateX: animation.interpolate({inputRange: [0, 1], outputRange: [0, 50]})},
-                  {
-                      translateY: animation.interpolate({inputRange: [0, 1], outputRange: [0, -80]})},
-                    {
-                      rotate: animation.interpolate({inputRange: [0, 1], outputRange: ['0deg', '180deg']})
-                    }]}]
-                  }
-            >
-              <IconFA name="lock" color="white" size={20}></IconFA>
-            </Animated.View>
-          )}           
+          <Svg preserveAspectRatio="xMidYMid meet" width="50" height="50" viewBox="0 0 50 50" version="1.1" fillRule="evenodd" clipRule="evenodd" strokeLinejoin="round" strokeMiterlimit="2">
+            <G id="Plan-de-travail1" transform="matrix(0.0728333,0,0,0.111127,-23.2217,-80.9278)">
+              <Rect x="318.833" y="728.246" width="686.5" height="449.936" fill="none" />
+              <G transform="matrix(5.67138,0,0,3.71705,305.701,710.501)">
+                <Path opacity={props.selectedCircle === 'star' ? 1 : 0.7} stroke={props.selectedCircle === 'star' ? 'white' : 'transparent'} fill={props.validated ? '#1AD15F' : '#FF3C62'} strokeWidth="5" d="M62.839,12.663L75.903,52.872L118.181,52.872L83.978,77.722L97.042,117.931L62.839,93.081L28.635,117.931L41.7,77.722L7.496,52.872L49.774,52.872L62.839,12.663Z" />
+              </G>
+            </G>
+          </Svg>
+          {props.isLocked ? (<IconFA style={[styles.lock]} name="lock" color="white" size={20}></IconFA>)
+            : wasLocked && (
+              <Animated.View style={[styles.lock, {
+                opacity: animation.interpolate({ inputRange: [0, 0, 1], outputRange: [0, 1, 0], }),
+                transform: [{ translateX: animation.interpolate({ inputRange: [0, 1], outputRange: [0, 50] }) },
+                {
+                  translateY: animation.interpolate({ inputRange: [0, 1], outputRange: [0, -80] })
+                },
+                {
+                  rotate: animation.interpolate({ inputRange: [0, 1], outputRange: ['0deg', '180deg'] })
+                }]
+              }]
+              }
+              >
+                <IconFA name="lock" color="white" size={20}></IconFA>
+              </Animated.View>
+            )}
         </TouchableOpacity>
-    :
-            <Svg preserveAspectRatio="xMidYMid meet" style={[styles.star, props.isADrop ?  ({ width: props.dimension, height: props.dimension}) : { width: "50", height: "50" }]}     viewBox="0 0 50 50" version="1.1" fillRule="evenodd" clipRule="evenodd" strokeLinejoin="round" strokeMiterlimit="2">
-                <G id="Plan-de-travail1" transform="matrix(0.0728333,0,0,0.111127,-23.2217,-80.9278)">
-                    <Rect x="318.833" y="728.246" width="686.5" height="449.936" fill="none" />
-                    <G transform="matrix(5.67138,0,0,3.71705,305.701,710.501)">
-                        <Path stroke='white' strokeWidth={props.isADrop ? "1" : "3"} fill={props.color} d="M62.839,12.663L75.903,52.872L118.181,52.872L83.978,77.722L97.042,117.931L62.839,93.081L28.635,117.931L41.7,77.722L7.496,52.872L49.774,52.872L62.839,12.663Z"/>
-                    </G>
-                </G>
-            </Svg>}
+        :
+        <Svg preserveAspectRatio="xMidYMid meet" style={[styles.star, props.isADrop ? ({ width: props.dimension, height: props.dimension }) : { width: "50", height: "50" }]} viewBox="0 0 50 50" version="1.1" fillRule="evenodd" clipRule="evenodd" strokeLinejoin="round" strokeMiterlimit="2">
+          <G id="Plan-de-travail1" transform="matrix(0.0728333,0,0,0.111127,-23.2217,-80.9278)">
+            <Rect x="318.833" y="728.246" width="686.5" height="449.936" fill="none" />
+            <G transform="matrix(5.67138,0,0,3.71705,305.701,710.501)">
+              <Path stroke='white' strokeWidth={props.isADrop ? "1" : "3"} fill={props.color} d="M62.839,12.663L75.903,52.872L118.181,52.872L83.978,77.722L97.042,117.931L62.839,93.081L28.635,117.931L41.7,77.722L7.496,52.872L49.774,52.872L62.839,12.663Z" />
+            </G>
+          </G>
+        </Svg>}
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-      star:{
-        marginLeft: 'auto',
-        left: 0,
-        right: 0,
-        marginRight: 'auto',
-        opacity: .9,
-      },
-      selectedCircle: {
-        borderColor: 'white',
-        borderWidth: 2
-      },
-      lock:{
-        position: 'absolute',
-        left: 35,
-        top: 35 
-      }
+  star: {
+    marginLeft: 'auto',
+    left: 0,
+    right: 0,
+    marginRight: 'auto',
+    opacity: .9,
+  },
+  selectedCircle: {
+    borderColor: 'white',
+    borderWidth: 2
+  },
+  lock: {
+    position: 'absolute',
+    left: 35,
+    top: 35
+  }
 });

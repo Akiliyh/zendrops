@@ -27,28 +27,28 @@ export default function Music(props) {
 
         <View style={styles.grid}>
           <View style={styles.firstRow}>
-          <TouchableOpacity onPress={() => playMusic('Resonance')} style={styles.touchableRow}>
-            <Text style={[styles.musicText, currentMusic === 'Resonance' ? styles.activeRow : null]}> Resonance </Text>
-            <Ionicons name={currentMusic === 'Resonance' ? 'pause' : 'play'} size={20} color={currentMusic === 'Resonance' ? 'burlywood' : 'white'}></Ionicons>
-          </TouchableOpacity>
+            <TouchableOpacity onPress={() => playMusic('Resonance')} style={styles.touchableRow}>
+              <Text style={[styles.musicText, currentMusic === 'Resonance' ? styles.activeRow : null]}> Resonance </Text>
+              <Ionicons name={currentMusic === 'Resonance' ? 'pause' : 'play'} size={20} color={currentMusic === 'Resonance' ? 'burlywood' : 'white'}></Ionicons>
+            </TouchableOpacity>
           </View>
           <View style={styles.row}>
-          <TouchableOpacity onPress={() => playMusic('Serenity In The Woods')} style={styles.touchableRow}>
-            <Text style={[styles.musicText, currentMusic === 'Serenity In The Woods' ? styles.activeRow : null]}> Serenity In The Woods </Text>
-            <Ionicons name={currentMusic === 'Serenity In The Woods' ? 'pause' : 'play'} size={20} color={currentMusic === 'Serenity In The Woods' ? 'burlywood' : 'white'}></Ionicons>
-          </TouchableOpacity>
+            <TouchableOpacity onPress={() => playMusic('Serenity In The Woods')} style={styles.touchableRow}>
+              <Text style={[styles.musicText, currentMusic === 'Serenity In The Woods' ? styles.activeRow : null]}> Serenity In The Woods </Text>
+              <Ionicons name={currentMusic === 'Serenity In The Woods' ? 'pause' : 'play'} size={20} color={currentMusic === 'Serenity In The Woods' ? 'burlywood' : 'white'}></Ionicons>
+            </TouchableOpacity>
           </View>
           <View style={styles.row}>
-          <TouchableOpacity onPress={() => playMusic('Lotus')} style={styles.touchableRow}>
-            <Text style={[styles.musicText, currentMusic === 'Lotus' ? styles.activeRow : null]}> Lotus </Text>
-            <Ionicons name={currentMusic === 'Lotus' ? 'pause' : 'play'} size={20} color={currentMusic === 'Lotus' ? 'burlywood' : 'white'}></Ionicons>
-          </TouchableOpacity>
+            <TouchableOpacity onPress={() => playMusic('Lotus')} style={styles.touchableRow}>
+              <Text style={[styles.musicText, currentMusic === 'Lotus' ? styles.activeRow : null]}> Lotus </Text>
+              <Ionicons name={currentMusic === 'Lotus' ? 'pause' : 'play'} size={20} color={currentMusic === 'Lotus' ? 'burlywood' : 'white'}></Ionicons>
+            </TouchableOpacity>
           </View>
           <View style={styles.lastRow}>
-          <TouchableOpacity onPress={() => playMusic('Raindrop Reverie')} style={styles.touchableRow}>
-            <Text style={[styles.musicText, currentMusic === 'Raindrop Reverie' ? styles.activeRow : null]}> Raindrop Reverie </Text>
-            <Ionicons name={currentMusic === 'Raindrop Reverie' ? 'pause' : 'play'} size={20} color={currentMusic === 'Raindrop Reverie' ? 'burlywood' : 'white'}></Ionicons>
-          </TouchableOpacity>
+            <TouchableOpacity onPress={() => playMusic('Raindrop Reverie')} style={styles.touchableRow}>
+              <Text style={[styles.musicText, currentMusic === 'Raindrop Reverie' ? styles.activeRow : null]}> Raindrop Reverie </Text>
+              <Ionicons name={currentMusic === 'Raindrop Reverie' ? 'pause' : 'play'} size={20} color={currentMusic === 'Raindrop Reverie' ? 'burlywood' : 'white'}></Ionicons>
+            </TouchableOpacity>
           </View>
         </View>
       </LinearGradient>
@@ -78,12 +78,12 @@ const styles = StyleSheet.create({
     padding: 20,
     justifyContent: 'space-between',
   },
-  firstRow:{
+  firstRow: {
     borderBottomColor: 'white',
     borderBottomWidth: 1,
     paddingBottom: 5,
   },
-  lastRow:{
+  lastRow: {
     paddingTop: 5
   },
   row: {
@@ -92,7 +92,7 @@ const styles = StyleSheet.create({
     paddingBottom: 5,
     paddingTop: 5
   },
-  touchableRow:{
+  touchableRow: {
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',

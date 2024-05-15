@@ -1,15 +1,12 @@
-// TODO 
+// TODO IN FUTURE UPDATES
 
-/*   Change music
+/*   
   Modulate audio depending on the location of the drop impact
   Make the drag event thingy
   make statusbar transparent
   add push notifications
   add the availability to pause the music or to mute the background music
   add images to background
-  set ko-fi account
-  change footer accounts
-  change twitter and instagram accounts
   fix translationX issue Menu opening when opening in landscape
   add loading animation to when we change orientation
   Fix Ad not working when first not loaded because of network
@@ -18,7 +15,7 @@
 */
 
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, TouchableWithoutFeedback, View, Animated, Dimensions, Easing} from 'react-native';
+import { StyleSheet, TouchableWithoutFeedback, View, Animated, Dimensions, Easing } from 'react-native';
 import React, { useState, useEffect, useCallback } from 'react';
 import { LinearGradient } from 'expo-linear-gradient';
 import * as StorageManager from './StorageManager';
@@ -31,10 +28,6 @@ import Options from './components/Options';
 import Splashscreen from './components/Splashscreen';
 import { Audio } from 'expo-av';
 import * as NavigationBar from 'expo-navigation-bar';
-import IconFA5 from 'react-native-vector-icons/FontAwesome5';
-import IconFA from 'react-native-vector-icons/FontAwesome';
-import Ionicons from 'react-native-vector-icons/Ionicons';
-import IconAnt from 'react-native-vector-icons/AntDesign';
 
 export default function App() {
   const [isIdle, setIsIdle] = useState(false);
@@ -87,7 +80,7 @@ export default function App() {
     return fonts.map(font => Font.loadAsync(font));
   } // Preloads all the icons
 
-  useEffect(() => { 
+  useEffect(() => {
     /*StorageManager.resetLocalStorage();*/
     StorageManager.loadCoinsFromLocalStorage().then((loadedCoins) => {
       setCoins(loadedCoins);
@@ -109,10 +102,10 @@ export default function App() {
       setBackgroundGradient(loadedBackground);
     });
     StorageManager.loadUnlockableItemsFromLocalStorage().then((loadUnlockableItems) => {
-        if (loadUnlockableItems != null) {
-          setUnlockableItems(loadUnlockableItems);
-          console.log(loadUnlockableItems);
-        }
+      if (loadUnlockableItems != null) {
+        setUnlockableItems(loadUnlockableItems);
+        console.log(loadUnlockableItems);
+      }
     });
     resetTimer();
     /* loadMusic(); */
@@ -128,32 +121,32 @@ export default function App() {
       console.log('Previous music unloaded');
       playSound();
       unloadSoundWithFadeOut()
-      .catch((error) => {
-        console.error('Error unloading sound:', error);
-        currentSoundObject.unloadAsync();
-      });
+        .catch((error) => {
+          console.error('Error unloading sound:', error);
+          currentSoundObject.unloadAsync();
+        });
     }
   }, [music]);
 
   useEffect(() => {
-      StorageManager.saveCoinsToLocalStorage(coins);
+    StorageManager.saveCoinsToLocalStorage(coins);
   }, [coins]);
 
   useEffect(() => {
     StorageManager.saveZenTimeToLocalStorage(activeMinutes);
-}, [activeMinutes]);
+  }, [activeMinutes]);
 
-useEffect(() => {
-  StorageManager.saveBackgroundToLocalStorage(backgroundGradient);
-}, [backgroundGradient]);
+  useEffect(() => {
+    StorageManager.saveBackgroundToLocalStorage(backgroundGradient);
+  }, [backgroundGradient]);
 
-useEffect(() => {
-  StorageManager.saveShapeToLocalStorage(dropShape);
-}, [dropShape]);
+  useEffect(() => {
+    StorageManager.saveShapeToLocalStorage(dropShape);
+  }, [dropShape]);
 
-useEffect(() => {
-  StorageManager.saveMenuSelectionToLocalStorage(menuCurrentlySelected);
-}, [menuCurrentlySelected]);
+  useEffect(() => {
+    StorageManager.saveMenuSelectionToLocalStorage(menuCurrentlySelected);
+  }, [menuCurrentlySelected]);
 
   const unloadSoundWithFadeOut = async () => {
     if (currentSoundObject) {
@@ -164,7 +157,7 @@ useEffect(() => {
         const totalSteps = fadeDuration / fadeInterval;
         const initialVolume = 1;
         const step = initialVolume / totalSteps;
-  
+
         /*for (let i = 0; i < totalSteps; i++) {
           const newVolume = initialVolume - step * i;
           await currentSoundObject.setVolumeAsync(newVolume);
@@ -172,7 +165,7 @@ useEffect(() => {
         }*/
 
         // Fading out currently not available
-  
+
         // After fading out, unload the sound from memory
         await currentSoundObject.unloadAsync();
         setCurrentSoundObject(null);
@@ -184,23 +177,23 @@ useEffect(() => {
   };
 
   const pauseSound = async () => {
-      try {
-        console.log(isMusicPaused + ' isMusicPaused');
-        if (!isMusicPaused) {
-          await currentSoundObject.pauseAsync();
-          setIsMusicPaused(true);
-          console.log('Music paused');
-        }
-        if (isMusicPaused) {
-          await currentSoundObject.playAsync();
-          console.log('Music unpaused');
-          setIsMusicPaused(false);
-        }
-      } catch (error) {
-        console.error('Error pausing sound with fade out:', error);
-        await currentSoundObject.unloadAsync();
+    try {
+      console.log(isMusicPaused + ' isMusicPaused');
+      if (!isMusicPaused) {
+        await currentSoundObject.pauseAsync();
+        setIsMusicPaused(true);
+        console.log('Music paused');
       }
-  };  
+      if (isMusicPaused) {
+        await currentSoundObject.playAsync();
+        console.log('Music unpaused');
+        setIsMusicPaused(false);
+      }
+    } catch (error) {
+      console.error('Error pausing sound with fade out:', error);
+      await currentSoundObject.unloadAsync();
+    }
+  };
 
   const musicFiles = {
     "Resonance": require('./assets/music/Resonance.mp3'),
@@ -211,44 +204,44 @@ useEffect(() => {
 
   const preloadedMusic = {};
 
-const loadMusic = async () => {
-  // Load the specified music first
-  const specifiedMusic = musicFiles[music];
-  if (specifiedMusic) {
-    const specifiedSoundObject = new Audio.Sound();
-    try {
-      await specifiedSoundObject.loadAsync(specifiedMusic);
-      await specifiedSoundObject.setVolumeAsync(1);
-      await specifiedSoundObject.setIsLoopingAsync(true);
-      preloadedMusic[music] = specifiedSoundObject;
-      console.log(`Music ${music} loaded`);
-      playSound();
-    } catch (error) {
-      console.error(`Error loading music ${music}:`, error);
-    }
-  } else {
-    console.error(`Specified music ${music} not found in musicFiles.`);
-  }
-
-  // Load the rest of the music files
-  const promises = Object.keys(musicFiles).map(async (key) => {
-    if (key !== music) {
-      const soundObject = new Audio.Sound();
+  const loadMusic = async () => {
+    // Load the specified music first
+    const specifiedMusic = musicFiles[music];
+    if (specifiedMusic) {
+      const specifiedSoundObject = new Audio.Sound();
       try {
-        await soundObject.loadAsync(musicFiles[key]);
-        await soundObject.setVolumeAsync(1);
-        await soundObject.setIsLoopingAsync(true);
-        preloadedMusic[key] = soundObject;
-        console.log(`Music ${key} loaded`);
+        await specifiedSoundObject.loadAsync(specifiedMusic);
+        await specifiedSoundObject.setVolumeAsync(1);
+        await specifiedSoundObject.setIsLoopingAsync(true);
+        preloadedMusic[music] = specifiedSoundObject;
+        console.log(`Music ${music} loaded`);
+        playSound();
       } catch (error) {
-        console.error(`Error loading music ${key}:`, error);
+        console.error(`Error loading music ${music}:`, error);
       }
+    } else {
+      console.error(`Specified music ${music} not found in musicFiles.`);
     }
-  });
 
-  await Promise.all(promises);
-  console.log('All music preloaded');
-};  
+    // Load the rest of the music files
+    const promises = Object.keys(musicFiles).map(async (key) => {
+      if (key !== music) {
+        const soundObject = new Audio.Sound();
+        try {
+          await soundObject.loadAsync(musicFiles[key]);
+          await soundObject.setVolumeAsync(1);
+          await soundObject.setIsLoopingAsync(true);
+          preloadedMusic[key] = soundObject;
+          console.log(`Music ${key} loaded`);
+        } catch (error) {
+          console.error(`Error loading music ${key}:`, error);
+        }
+      }
+    });
+
+    await Promise.all(promises);
+    console.log('All music preloaded');
+  };
 
   const fetchData = () => {
     try {
@@ -288,55 +281,55 @@ const loadMusic = async () => {
     }
   };
 
-// transparent background
-NavigationBar.setVisibilityAsync("hidden");
+  // transparent background
+  NavigationBar.setVisibilityAsync("hidden");
 
-const playSound = (storedMusic) => {
-  try {
-    const soundObject = new Audio.Sound();
-    let selectedMusic = null;
-    if (storedMusic != null) {
-      selectedMusic = musicFiles[storedMusic];
-    } else {
-      selectedMusic = musicFiles[music];
+  const playSound = (storedMusic) => {
+    try {
+      const soundObject = new Audio.Sound();
+      let selectedMusic = null;
+      if (storedMusic != null) {
+        selectedMusic = musicFiles[storedMusic];
+      } else {
+        selectedMusic = musicFiles[music];
+      }
+      soundObject
+        .loadAsync(selectedMusic)
+        .then(() => {
+          soundObject.setVolumeAsync(1);
+          soundObject.setIsLoopingAsync(true)
+            .then(() => {
+              console.log('Music loaded');
+              if (storedMusic != null) {
+                console.log('Stored music is ' + storedMusic);
+              } else {
+                console.log('Changed music is ' + music);
+              }
+              soundObject.playAsync();
+              setCurrentSoundObject(soundObject);
+            })
+            .catch((error) => {
+              console.error('Error setting loop:', error);
+            });
+        })
+        .catch((error) => {
+          console.error('Error loading sound:', error);
+        });
+    } catch (error) {
+      console.error('Error creating sound object:', error);
     }
-    soundObject
-      .loadAsync(selectedMusic)
-      .then(() => {
-        soundObject.setVolumeAsync(1);
-        soundObject.setIsLoopingAsync(true)
-          .then(() => {
-            console.log('Music loaded');
-            if (storedMusic != null) {
-              console.log('Stored music is ' + storedMusic);
-            } else {
-              console.log('Changed music is ' + music);
-            }
-            soundObject.playAsync();
-            setCurrentSoundObject(soundObject);
-          })
-          .catch((error) => {
-            console.error('Error setting loop:', error);
-          });
-      })
-      .catch((error) => {
-        console.error('Error loading sound:', error);
-      });
-  } catch (error) {
-    console.error('Error creating sound object:', error);
+  };
+
+  const removeTitleScreen = () => {
+    setTimeout(() => {
+      setShowTitle(false);
+    }, 5000);
+    setTitleFadeOut(true);
   }
-};
 
-const removeTitleScreen = () => {
-  setTimeout(() => {
-    setShowTitle(false); 
-  }, 5000);
-  setTitleFadeOut(true);
-}
-
-const handleOverlayChange = useCallback((isVisible) => {
-  setShowOverlay(isVisible);
-}, []);
+  const handleOverlayChange = useCallback((isVisible) => {
+    setShowOverlay(isVisible);
+  }, []);
 
   const handleMenuCurrentlySelected = (menuSelected) => {
     setMenuCurrentlySelected(menuSelected);
@@ -354,106 +347,108 @@ const handleOverlayChange = useCallback((isVisible) => {
       easing: Easing.bezier(0.5, 1, 0.89, 1),
       useNativeDriver: true,
     }).start();
-};
+  };
 
-const handleBackgroundGradient = (gradient) => {
-  console.log('Current gradient is ' + gradient)
-  setBackgroundGradient(gradient);
-};
+  const handleBackgroundGradient = (gradient) => {
+    console.log('Current gradient is ' + gradient)
+    setBackgroundGradient(gradient);
+  };
 
-const handleDropShape = (shape) => {
-  console.log('Current shape is ' + shape)
-  setDropShape(shape);
-};
+  const handleDropShape = (shape) => {
+    console.log('Current shape is ' + shape)
+    setDropShape(shape);
+  };
 
-const handleMusic = (newMusic) => {
-  console.log(isMusicInitiated)
-  /* if (music === newMusic && isMusicInitiated) {
-    console.log('same music again');
-    pauseSound();
+  const handleMusic = (newMusic) => {
+    console.log(isMusicInitiated)
+
+    /* Resolve pause function */
+
+    /* if (music === newMusic && isMusicInitiated) {
+      console.log('same music again');
+      pauseSound();
+    }
+    if (!isMusicInitiated) { // Sets the musicinitiation so that the pausing thingy works
+      setIsMusicInitiated(true)
+    }*/
+
+    console.log('Current music is ' + newMusic)
+    setMusic(newMusic);
+  };
+
+  const handleCoins = (coins) => {
+    console.log(coins);
+    setCoins(coins);
   }
-  if (!isMusicInitiated) { // Sets the musicinitiation so that the pausing thingy works
-    setIsMusicInitiated(true)
-  }*/
-  console.log('Current music is ' + newMusic)
-  setMusic(newMusic);
-};
-
-const handleCoins = (coins) => {
-  console.log(coins);
-  setCoins(coins);
-}
-
 
   const handleUpdateIdle = (value) => {
     console.log('Is idle : ' + value)
     setTimeout(() => {
-      setIsIdle(value); 
+      setIsIdle(value);
     }, 2000);
     setIsIdleFade(!value);
-  // Do something with the updated timer value
 
-};
+  };
 
-const handleUpdateRelax = (value) => {
-  console.log('Is relax : ' + value)
-  setIsRelaxFade(false);
-    setIsRelax(value); 
-  setTimeout(() => {
-    setIsRelaxFade(true);
-  }, 5000);
-};
+  const handleUpdateRelax = (value) => {
+    console.log('Is relax : ' + value)
+    setIsRelaxFade(false);
+    setIsRelax(value);
+    setTimeout(() => {
+      setIsRelaxFade(true);
+    }, 5000);
+  };
 
   return (
     <TouchableWithoutFeedback onPress={showTitle ? removeTitleScreen : null}>
       <View style={styles.container}>
         <Splashscreen></Splashscreen>
-      <Animated.View style={[{ transform: [{ translateX: overlayTranslateX }]}, {position: 'absolute'}, {width: '100%'}, {height: '100%'}]}>
-        <LinearGradient
-          colors={backgroundGradient}
-          style={styles.gradient}
-          start={{ x: 0, y: 1 }}
-          end={{ x: 1, y: 0 }}
-          locations={[0, 0.2, 0.4, 0.6, 0.8]}
-        >
-          <StatusBar hidden style="auto" />
-        </LinearGradient>
+        <Animated.View style={[{ transform: [{ translateX: overlayTranslateX }] }, { position: 'absolute' }, { width: '100%' }, { height: '100%' }]}>
+          <LinearGradient
+            colors={backgroundGradient}
+            style={styles.gradient}
+            start={{ x: 0, y: 1 }}
+            end={{ x: 1, y: 0 }}
+            locations={[0, 0.2, 0.4, 0.6, 0.8]}
+          >
+            <StatusBar hidden style="auto" />
+          </LinearGradient>
 
-        {showTitle ? 
-          <Title showTitle={titleFadeOut} currentShape={dropShape}></Title>
-          : <View>
-            <IntroText to={10000} text={"Music by James November"}></IntroText>
-            <IntroText to={100} text={"For a better experience use your headphones"}></IntroText>
-          </View>
+          {showTitle ?
+            <Title showTitle={titleFadeOut} currentShape={dropShape}></Title>
+            : <View>
+              <IntroText to={10000} text={"Music by James November"}></IntroText>
+              <IntroText to={100} text={"For a better experience use your headphones"}></IntroText>
+            </View>
           }
 
-{isIdle ? 
-<IdleText isFade={isIdleFade} text={"Touch to draw drops"}></IdleText> 
-:null}
+          {isIdle ?
+            <IdleText isFade={isIdleFade} text={"Touch to draw drops"}></IdleText>
+            : null}
 
-{isRelax ? 
-<IdleText isFade={isRelaxFade} text={"Relax, it's not cookie clicker"}></IdleText> 
-:null}
+          {isRelax ?
+            <IdleText isFade={isRelaxFade} text={"Relax, it's not cookie clicker"}></IdleText>
+            : null}
 
-                
-        <TouchingSurface isTitleShown={showTitle} onUpdateRelax={handleUpdateRelax} onUpdateIdle={handleUpdateIdle} dropShape={dropShape}/>
-        <Menu isArrow={false} showOverlay={showOverlay} handleOverlayFadeOut={handleOverlayFadeOut} handleOverlayChange={handleOverlayChange}/>
-      </Animated.View>
-      {showOverlay ? 
-                <Options 
-                unlockableItems={unlockableItems}
-                handleMenuCurrentlySelected={handleMenuCurrentlySelected} menuCurrentlySelected={menuCurrentlySelected} 
-                showOverlay={showOverlay} handleOverlayFadeOut={handleOverlayFadeOut} handleOverlayChange={handleOverlayChange} overlayFadeOut={overlayFadeOut}
-                backgroundGradient={backgroundGradient} handleBackgroundGradient={handleBackgroundGradient} backgroundsData={backgroundsData}
-                dropShape={dropShape} handleDropShape={handleDropShape} dropShapesAvailable={dropShapesAvailable}
-                music={music} handleMusic={handleMusic} musicAvailable={musicAvailable}
-                coins={coins} setCoins={handleCoins} 
-                zenTime={activeMinutes}>
-                </Options>
-        :null}
+
+          <TouchingSurface isTitleShown={showTitle} onUpdateRelax={handleUpdateRelax} onUpdateIdle={handleUpdateIdle} dropShape={dropShape} />
+          <Menu isArrow={false} showOverlay={showOverlay} handleOverlayFadeOut={handleOverlayFadeOut} handleOverlayChange={handleOverlayChange} />
+        </Animated.View>
+        {showOverlay ?
+          <Options
+            unlockableItems={unlockableItems}
+            handleMenuCurrentlySelected={handleMenuCurrentlySelected} menuCurrentlySelected={menuCurrentlySelected}
+            showOverlay={showOverlay} handleOverlayFadeOut={handleOverlayFadeOut} handleOverlayChange={handleOverlayChange} overlayFadeOut={overlayFadeOut}
+            backgroundGradient={backgroundGradient} handleBackgroundGradient={handleBackgroundGradient} backgroundsData={backgroundsData}
+            dropShape={dropShape} handleDropShape={handleDropShape} dropShapesAvailable={dropShapesAvailable}
+            music={music} handleMusic={handleMusic} musicAvailable={musicAvailable}
+            coins={coins} setCoins={handleCoins}
+            zenTime={activeMinutes}>
+          </Options>
+          : null}
         {/* Options make the app slow down, can easily be seen on the touchable opacity */}
       </View>
-      </TouchableWithoutFeedback>
+    </TouchableWithoutFeedback>
   );
 }
 

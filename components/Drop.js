@@ -23,68 +23,67 @@ export default function Drop(props) {
   const rotationValue = randomIntFromInterval(0, 360);
   const ShapeComponent = shapeComponents[props.dropShape];
 
-    useEffect(() => {
-        
-        const showAnimation = Animated.parallel([
-          Animated.timing(opacityValue, {
-            toValue: 1,
-            duration: 1,
-            useNativeDriver: true,
-          }),
-          Animated.timing(scaleValue, {
-            toValue: 1,
-            duration: 8000,
-            useNativeDriver: true,
-            easing: Easing.bezier(.13,.89,.27,.91),
-          }),
-        ]);
-    
-        const hideAnimation = Animated.timing(opacityValue, {
-          toValue: 0,
-          duration: 8000,
-          useNativeDriver: true,
-          easing: Easing.bezier(.13,.89,.27,.91),
-        });
-    
-        const timeout = setTimeout(() => {
-          hideAnimation.start();
-        }, 100);
+  useEffect(() => {
 
-        showAnimation.start();
-    
-        // Cleanup function (cancel the timeout when the component unmounts)
-        return () => clearTimeout(timeout);
-        hideAnimation.stop();
-      }, []);
+    const showAnimation = Animated.parallel([
+      Animated.timing(opacityValue, {
+        toValue: 1,
+        duration: 1,
+        useNativeDriver: true,
+      }),
+      Animated.timing(scaleValue, {
+        toValue: 1,
+        duration: 8000,
+        useNativeDriver: true,
+        easing: Easing.bezier(.13, .89, .27, .91),
+      }),
+    ]);
+
+    const hideAnimation = Animated.timing(opacityValue, {
+      toValue: 0,
+      duration: 8000,
+      useNativeDriver: true,
+      easing: Easing.bezier(.13, .89, .27, .91),
+    });
+
+    const timeout = setTimeout(() => {
+      hideAnimation.start();
+    }, 100);
+
+    showAnimation.start();
+
+    return () => clearTimeout(timeout);
+    hideAnimation.stop();
+  }, []);
 
   return (
     <Animated.View style={[styles.impactContainer, {
-          top: props.top - dimension / 2,
-          left: props.left - dimension / 2,
-          width: dimension,
-          height: dimension,
-          opacity: opacityValue,
-          transform: [
-            { scale: scaleValue },
-            { rotate: rotationValue + 'deg' }, // Apply the random angle here
-          ],
-        },
-      ]}
+      top: props.top - dimension / 2,
+      left: props.left - dimension / 2,
+      width: dimension,
+      height: dimension,
+      opacity: opacityValue,
+      transform: [
+        { scale: scaleValue },
+        { rotate: rotationValue + 'deg' }, // Apply the random angle here
+      ],
+    },
+    ]}
     >
-      <ShapeComponent style={styles.impact} isADrop={true} dimension={dimension} color={getRandomColor()} isIcon={false}/>
-  </Animated.View>
+      <ShapeComponent style={styles.impact} isADrop={true} dimension={dimension} color={getRandomColor()} isIcon={false} />
+    </Animated.View>
   );
 }
 
-function randomIntFromInterval(min, max) { // min and max included 
-    return Math.floor(Math.random() * (max - min + 1) + min)
+function randomIntFromInterval(min, max) {
+  return Math.floor(Math.random() * (max - min + 1) + min)
 }
 
 function getRandomColor() {
   let letters = '0123456789ABCDEF';
   let color = '#';
   for (var i = 0; i < 6; i++) {
-      color += letters[Math.floor(Math.random() * 16)];
+    color += letters[Math.floor(Math.random() * 16)];
   }
   return color;
 }
@@ -98,10 +97,10 @@ const styles = StyleSheet.create({
     marginRight: 'auto',
     opacity: 0,
     flexDirection: 'row'
-},
-    impact: {
-        position: 'absolute',
-        marginLeft: 'auto',
-        marginRight: 'auto',
-    }
-  });
+  },
+  impact: {
+    position: 'absolute',
+    marginLeft: 'auto',
+    marginRight: 'auto',
+  }
+});

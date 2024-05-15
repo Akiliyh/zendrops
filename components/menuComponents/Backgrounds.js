@@ -21,8 +21,8 @@ export default function Backgrounds(props) {
   }, [props.validatedBackground]);
 
   useEffect(() => {
-    
-    console.log( 'The current unlocked backgrounds are');
+
+    console.log('The current unlocked backgrounds are');
     console.log(unlockedBackground);
   }, [props.unlockableItems]);
 
@@ -38,7 +38,7 @@ export default function Backgrounds(props) {
     } else {
       return true
     }
-  }; 
+  };
 
   return (
     <View style={styles.backgroundsContainer}>
@@ -50,22 +50,22 @@ export default function Backgrounds(props) {
       >
         <View style={styles.grid}>
           <View style={styles.row}>
-          <GenerateLinearGradient unlockableItems={unlockedBackground} handleCirclePress={handleCirclePress} selectedCircle={selectedCircle} validated={props.validatedBackground} isBackgroundLocked={isBackgroundLocked('orange')} name='orange' colors={["#ff8000", "#ff8000", "#ff8000", "#ff8000", "#ff8000"]} isSelected={selectedCircle === 'orange'}></GenerateLinearGradient>
+            <GenerateLinearGradient unlockableItems={unlockedBackground} handleCirclePress={handleCirclePress} selectedCircle={selectedCircle} validated={props.validatedBackground} isBackgroundLocked={isBackgroundLocked('orange')} name='orange' colors={["#ff8000", "#ff8000", "#ff8000", "#ff8000", "#ff8000"]} isSelected={selectedCircle === 'orange'}></GenerateLinearGradient>
             <GenerateLinearGradient unlockableItems={unlockedBackground} handleCirclePress={handleCirclePress} selectedCircle={selectedCircle} validated={props.validatedBackground} isBackgroundLocked={isBackgroundLocked('blue')} name='blue' colors={["#051329", "#03112f", "#030f34", "#070c38", "#0f073b"]} isSelected={selectedCircle === 'blue'}></GenerateLinearGradient>
             <GenerateLinearGradient unlockableItems={unlockedBackground} handleCirclePress={handleCirclePress} selectedCircle={selectedCircle} validated={props.validatedBackground} isBackgroundLocked={isBackgroundLocked('green')} name='green' colors={["#06454b", "#06454b", "#06454b", "#06454b", "#06454b"]} isSelected={selectedCircle === 'green'}></GenerateLinearGradient>
             <GenerateLinearGradient unlockableItems={unlockedBackground} handleCirclePress={handleCirclePress} selectedCircle={selectedCircle} validated={props.validatedBackground} isBackgroundLocked={isBackgroundLocked('red')} name='red' colors={["#651C32", "#871C2F", "#A91D2B", "#CB1D28", "#ED1D24"]} isSelected={selectedCircle === 'red'}></GenerateLinearGradient>
           </View>
           <View style={styles.row}>
-          <GenerateLinearGradient unlockableItems={unlockedBackground} handleCirclePress={handleCirclePress} selectedCircle={selectedCircle} validated={props.validatedBackground} isBackgroundLocked={isBackgroundLocked('nightblue')} name='nightblue' colors={["#030F39", "#424B6B", "#81879C", "#C0C3CE", "#FFFFFF"]} isSelected={selectedCircle === 'nightblue'}></GenerateLinearGradient>
-          <GenerateLinearGradient unlockableItems={unlockedBackground} handleCirclePress={handleCirclePress} selectedCircle={selectedCircle} validated={props.validatedBackground} isBackgroundLocked={isBackgroundLocked('black')} name='black' colors={["#000000", "#000000", "#000000", "#000000", "#000000"]} isSelected={selectedCircle === 'black'}></GenerateLinearGradient>
-          <GenerateLinearGradient unlockableItems={unlockedBackground} handleCirclePress={handleCirclePress} selectedCircle={selectedCircle} validated={props.validatedBackground} isBackgroundLocked={isBackgroundLocked('dawn')} name='dawn' colors={["#FFDE4E", "#FFC552", "#FFAC56", "#FF935A", "#FF7A5E"]} isSelected={selectedCircle === 'dawn'}></GenerateLinearGradient>
-          <GenerateLinearGradient unlockableItems={unlockedBackground} handleCirclePress={handleCirclePress} selectedCircle={selectedCircle} validated={props.validatedBackground} isBackgroundLocked={isBackgroundLocked('pink')} name='pink' colors={["#ffc0cb", "#ffc0cb", "#ffc0cb", "#ffc0cb", "#ffc0cb"]} isSelected={selectedCircle === 'pink'}></GenerateLinearGradient>
+            <GenerateLinearGradient unlockableItems={unlockedBackground} handleCirclePress={handleCirclePress} selectedCircle={selectedCircle} validated={props.validatedBackground} isBackgroundLocked={isBackgroundLocked('nightblue')} name='nightblue' colors={["#030F39", "#424B6B", "#81879C", "#C0C3CE", "#FFFFFF"]} isSelected={selectedCircle === 'nightblue'}></GenerateLinearGradient>
+            <GenerateLinearGradient unlockableItems={unlockedBackground} handleCirclePress={handleCirclePress} selectedCircle={selectedCircle} validated={props.validatedBackground} isBackgroundLocked={isBackgroundLocked('black')} name='black' colors={["#000000", "#000000", "#000000", "#000000", "#000000"]} isSelected={selectedCircle === 'black'}></GenerateLinearGradient>
+            <GenerateLinearGradient unlockableItems={unlockedBackground} handleCirclePress={handleCirclePress} selectedCircle={selectedCircle} validated={props.validatedBackground} isBackgroundLocked={isBackgroundLocked('dawn')} name='dawn' colors={["#FFDE4E", "#FFC552", "#FFAC56", "#FF935A", "#FF7A5E"]} isSelected={selectedCircle === 'dawn'}></GenerateLinearGradient>
+            <GenerateLinearGradient unlockableItems={unlockedBackground} handleCirclePress={handleCirclePress} selectedCircle={selectedCircle} validated={props.validatedBackground} isBackgroundLocked={isBackgroundLocked('pink')} name='pink' colors={["#ffc0cb", "#ffc0cb", "#ffc0cb", "#ffc0cb", "#ffc0cb"]} isSelected={selectedCircle === 'pink'}></GenerateLinearGradient>
           </View>
           <View style={styles.row}>
-          <GenerateLinearGradient unlockableItems={unlockedBackground} handleCirclePress={handleCirclePress} selectedCircle={selectedCircle} validated={props.validatedBackground} isBackgroundLocked={isBackgroundLocked('neon')} name='neon' colors={["#DCB16D", "#C19E92", "#A78CB6", "#8C79DB", "#7166FF"]} isSelected={selectedCircle === 'neon'}></GenerateLinearGradient>
-          <GenerateLinearGradient unlockableItems={unlockedBackground} handleCirclePress={handleCirclePress} selectedCircle={selectedCircle} validated={props.validatedBackground} isBackgroundLocked={isBackgroundLocked('azure')} name='azure' colors={["#008AD8", "#008AD8", "#008AD8", "#008AD8", "#008AD8"]} isSelected={selectedCircle === 'azure'}></GenerateLinearGradient>
-          <GenerateLinearGradient unlockableItems={unlockedBackground} handleCirclePress={handleCirclePress} selectedCircle={selectedCircle} validated={props.validatedBackground} isBackgroundLocked={isBackgroundLocked('purple')} name='purple' colors={["#8031A7", "#7A3495", "#753783", "#6F3970", "#693C5E"]} isSelected={selectedCircle === 'purple'}></GenerateLinearGradient>
-          <GenerateLinearGradient unlockableItems={unlockedBackground} handleCirclePress={handleCirclePress} selectedCircle={selectedCircle} validated={props.validatedBackground} isBackgroundLocked={isBackgroundLocked('burgundy')} name='burgundy' colors={["#9B2242", "#9B2242", "#9B2242", "#9B2242", "#9B2242"]} isSelected={selectedCircle === 'burgundy'}></GenerateLinearGradient>
+            <GenerateLinearGradient unlockableItems={unlockedBackground} handleCirclePress={handleCirclePress} selectedCircle={selectedCircle} validated={props.validatedBackground} isBackgroundLocked={isBackgroundLocked('neon')} name='neon' colors={["#DCB16D", "#C19E92", "#A78CB6", "#8C79DB", "#7166FF"]} isSelected={selectedCircle === 'neon'}></GenerateLinearGradient>
+            <GenerateLinearGradient unlockableItems={unlockedBackground} handleCirclePress={handleCirclePress} selectedCircle={selectedCircle} validated={props.validatedBackground} isBackgroundLocked={isBackgroundLocked('azure')} name='azure' colors={["#008AD8", "#008AD8", "#008AD8", "#008AD8", "#008AD8"]} isSelected={selectedCircle === 'azure'}></GenerateLinearGradient>
+            <GenerateLinearGradient unlockableItems={unlockedBackground} handleCirclePress={handleCirclePress} selectedCircle={selectedCircle} validated={props.validatedBackground} isBackgroundLocked={isBackgroundLocked('purple')} name='purple' colors={["#8031A7", "#7A3495", "#753783", "#6F3970", "#693C5E"]} isSelected={selectedCircle === 'purple'}></GenerateLinearGradient>
+            <GenerateLinearGradient unlockableItems={unlockedBackground} handleCirclePress={handleCirclePress} selectedCircle={selectedCircle} validated={props.validatedBackground} isBackgroundLocked={isBackgroundLocked('burgundy')} name='burgundy' colors={["#9B2242", "#9B2242", "#9B2242", "#9B2242", "#9B2242"]} isSelected={selectedCircle === 'burgundy'}></GenerateLinearGradient>
           </View>
         </View>
       </LinearGradient>
@@ -121,9 +121,9 @@ const styles = StyleSheet.create({
     borderWidth: 2,
     borderColor: 'transparent',
   },
-  lock:{
+  lock: {
     position: 'absolute',
     left: 20,
-    top: 15 
+    top: 15
   }
 });
