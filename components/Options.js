@@ -478,7 +478,7 @@ export default function Options(props) {
                   <Text style={styles.textCoins}>{props.coins}</Text>
                 </View>
                 <IconFA5 name="coins" size={24} color="yellow"></IconFA5>
-                <Ad coins={updatedCoins} onPress={coinsEarned} coinsEarned={coinsEarned} />
+                {/* <Ad coins={updatedCoins} onPress={coinsEarned} coinsEarned={coinsEarned} /> */}
               </View>
 
               <View style={styles.preview}>
@@ -545,13 +545,13 @@ export default function Options(props) {
             </View>
           </TouchableWithoutFeedback>}
 
-        <View style={isLandscape ? styles.socialTextLandscape : styles.socialText}>
+        {/* <View style={isLandscape ? styles.socialTextLandscape : styles.socialText}>
           <View style={styles.socialIcons}>
             <TouchableOpacity onPress={handlePressKoFi}>
               <Image style={{ height: 36, width: 120 }} source={{ uri: 'https://storage.ko-fi.com/cdn/kofi3.png?v=3' }} resizeMode="contain" />
             </TouchableOpacity>
           </View>
-        </View>
+        </View> */}
       </LinearGradient>
     </Animated.View>
   );
