@@ -13,7 +13,7 @@
     "@react-native-community/blur": "^4.3.2",
     "@react-navigation/native": "^6.1.7",
     "@react-navigation/native-stack": "^6.9.13",
-    "expo": "~48.0.18",
+    "expo": "~48.0.21",
     "expo-av": "~13.2.1",
     "expo-blur": "~12.2.2",
     "expo-dev-client": "~2.2.1",
@@ -36,7 +36,8 @@
     "react-native-svg": "13.4.0",
     "react-native-vector-icons": "^9.2.0",
     "react-native-web": "~0.18.10",
-    "rive-react-native": "^6.0.4"
+    "rive-react-native": "^6.0.4",
+    "expo-build-properties": "~0.6.0"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0"
